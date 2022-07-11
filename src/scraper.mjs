@@ -1,12 +1,9 @@
-import puppeteer from "puppeteer";
 import PublicSuffixList from "publicsuffixlist";
-
-const browser = await puppeteer.launch();
 
 const psl = new PublicSuffixList();
 psl.initializeSync();
 
-export async function getThirdPartyRequests(startingURL) {
+export async function getThirdPartyRequests(browser, startingURL) {
   const startingURLDomain = getDomain(startingURL);
   const thirdPartyRequests = [];
 
@@ -24,8 +21,6 @@ export async function getThirdPartyRequests(startingURL) {
   });
 
   await page.goto(startingURL);
-
-  await browser.close();
 
   return thirdPartyRequests;
 }

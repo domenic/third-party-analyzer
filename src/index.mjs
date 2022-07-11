@@ -1,9 +1,13 @@
+import puppeteer from "puppeteer";
 import { getThirdPartyRequests, requestsToScriptDomains } from "./scraper.mjs";
 
 const target = getTarget();
+const browser = await puppeteer.launch();
 
-const requests = await getThirdPartyRequests(target);
+const requests = await getThirdPartyRequests(browser, target);
 const thirdPartyScriptDomains = requestsToScriptDomains(requests);
+
+await browser.close();
 
 // TODO: it'd be kind of cool if these streamed instead of buffering.
 for (const domain of thirdPartyScriptDomains) {

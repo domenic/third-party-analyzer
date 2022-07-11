@@ -1,0 +1,12 @@
+{
+  "private": true,
+  "name": "third-party-analyzer",
+  "main": "src/index.mjs",
+  "bin": "src/index.mjs",
+  "author": "Domenic Denicola <d@domenic.me>",
+  "license": "Apache-2.0",
+  "dependencies": {
+    "publicsuffixlist": "^0.3.0",
+    "puppeteer": "^15.3.2"
+  }
+}
